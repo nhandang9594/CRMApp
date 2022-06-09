@@ -7,15 +7,10 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace Antra.CRMApp.Core.Entity
 {
-    public class Shipper
+    public class Region
     {
         public int Id { get; set; }
-        [Required]
-        [Column(TypeName = "varchar")]
-        [MaxLength(50)]
+        [Required, Column(TypeName = "varchar"), MaxLength(20)]
         public string Name { get; set; }
-        [Required, Column(TypeName = "varchar")]
-        [MaxLength(15)]
-        public string Phone { get; set; }
     }
 }

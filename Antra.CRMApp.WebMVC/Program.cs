@@ -1,11 +1,26 @@
+using Antra.CRMApp.Core.Contract.Repository;
+using Antra.CRMApp.Core.Contract.Service;
+using Antra.CRMApp.Infrastructure.Service;
 using Antra.CRMApp.Infrastructure.Data;
+using Antra.CRMApp.Infrastructure.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-//dependency injection 
+//dependency injection for repository
 builder.Services.AddControllersWithViews();
 builder.Services.AddSqlServer<CrmDbContext>(builder.Configuration.GetConnectionString("OnlineCRM"));
+builder.Services.AddScoped<IEmployeeRepositoryAsync, EmployeeRepositoryAsync>();
+builder.Services.AddScoped<IRegionRepositoryAsync, RegionRepositoryAsync>();
+
+
+
+
+
+//depedency injection for services
+builder.Services.AddScoped<IEmployeeServiceAsync, EmployeeServiceAsync>();
+builder.Services.AddScoped<IRegionServiceAsync, RegionServiceAsync>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
