@@ -1,20 +1,29 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Antra.CRMApp.WebMVC.Models;
+using Antra.CRMApp.Core.Contract.Service;
+using Antra.CRMApp.Core.Model;
+
 namespace Antra.CRMApp.WebMVC.Controllers
 {
     public class ProductController : Controller
     {
-        public IActionResult Index()
+        private readonly IProductServiceAsync productServiceAsync;
+        private readonly IVendorServiceAsync vendorServiceAsync;
+        private readonly ICategoryServiceAsync categoryServiceAsync;
+        public ProductController(IProductServiceAsync productservice, IVendorServiceAsync vendorservice, ICategoryServiceAsync categoryservice)
         {
-            List<Product> products = new List<Product>();
-            products.Add(new Product() { Id=1, Name="Laptop", Color="Silver", Price=2000});
-            products.Add(new Product() { Id = 2, Name = "Iphone", Color = "Black", Price = 1000 });
-            products.Add(new Product() { Id = 3, Name = "Samsung Galaxy", Color = "Blue", Price = 900 });
-            products.Add(new Product() { Id = 4, Name = "Chair", Color = "Wooden", Price = 120 });
-            products.Add(new Product() { Id = 5, Name = "Table", Color = "White", Price = 250 });
+            productServiceAsync = productservice;
+            vendorServiceAsync = vendorservice;
+            categoryServiceAsync = categoryservice;
+        }
+        public async Task<IActionResult> Index()
+        {
+            var productCollection = await productServiceAsync.GetAllAsync();
+            if (productCollection != null)
+                return View(productCollection);
 
-            ViewData["Title"] = "Product/Index";
-            return View(products);
+            List<ProductResponseModel> model = new List<ProductResponseModel>();
+            return View(model);
         }
         public IActionResult Detail()
         {
@@ -37,12 +46,11 @@ namespace Antra.CRMApp.WebMVC.Controllers
                 return RedirectToAction("Index");
             }
             return View(product);
-            
         }
 
-        public IActionResult Edit(int id)
-        {
-            return View();
-        }
+        //public IActionResult Edit(int id)
+        //{
+        //    return View();
+        //}
     }
 }

@@ -1,0 +1,18 @@
+﻿@model ProductResponseModel
+<tr>
+    <td>@Model.Id</td>
+    <td>@Model.Name</td>
+    <td>@Model.SupplierId</td>
+    <td>@Model.CategoryId</td>
+    <td>@Model.QuantityPerUnit</td>
+    <td>@Model.UnitPrice</td>
+    <td>@Model.UnitsInStock</td>
+    <td>@Model.UnitsOnOrder</td>
+    <td>@Model.ReorderLevel</td>
+    <td>@Model.Discontinued</td>
+    <td>
+        <span>
+            <a asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Id" >Edit</a>
+        </span>
+    </td>
+</tr> 

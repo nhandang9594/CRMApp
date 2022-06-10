@@ -1,0 +1,20 @@
+﻿@model VendorResponseModel
+<tr>
+    <td>@Model.Id</td>
+    <td>@Model.Name</td>
+    <td>@Model.City</td>
+    <td>@Model.Country</td>
+    <td>@Model.Mobile</td>
+    <td>@Model.EmailId</td>
+    <td>@Model.IsActive</td>
+    <td>
+        <span>
+            <a asp-controller="Vendor" asp-action="Edit" asp-route-id="@Model.Id" >Edit</a>
+        </span>
+    </td>
+    <td>
+        <span>
+            <a asp-controller="Vendor" asp-action="Delete"  asp-route-id="@Model.Id" class="text-danger">Delete</a>
+        </span>
+    </td>
+</tr> 

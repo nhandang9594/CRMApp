@@ -13,7 +13,7 @@ builder.Services.AddSqlServer<CrmDbContext>(builder.Configuration.GetConnectionS
 builder.Services.AddScoped<IEmployeeRepositoryAsync, EmployeeRepositoryAsync>();
 builder.Services.AddScoped<IRegionRepositoryAsync, RegionRepositoryAsync>();
 builder.Services.AddScoped<IProductRepositoryAsync, ProductRepositoryAsync>();
-
+builder.Services.AddScoped<IVendorRepositoryAsync, VendorRepositoryAsync>();
 
 
 
@@ -22,6 +22,7 @@ builder.Services.AddScoped<IProductRepositoryAsync, ProductRepositoryAsync>();
 builder.Services.AddScoped<IEmployeeServiceAsync, EmployeeServiceAsync>();
 builder.Services.AddScoped<IRegionServiceAsync, RegionServiceAsync>();
 builder.Services.AddScoped<IProductServiceAsync, ProductServiceAsync>();
+builder.Services.AddScoped<IVendorServiceAsync, VendorServiceAsync>();
 
 var app = builder.Build();
 

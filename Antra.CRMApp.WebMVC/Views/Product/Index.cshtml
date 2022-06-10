@@ -2,36 +2,30 @@
     razor is a viewengine, it will convert the C# code to 
     the script code which a browser can understand
 -->
-@model IEnumerable<Product>
-<h1>Product index</h1>
+@model IEnumerable<ProductResponseModel>
+<a asp-action="Create" asp-controller="Product" class="bg-success btn">Add Product</a>
 <table class="table">
     <thead>
         <tr>
             <th>Id</th>
             <th>Name</th>
-            <th>Color</th>
-            <th>Price</th>
-            <th>Option</th>
+            <th>SupplierId</th>
+            <th>CategoryId</th>
+            <th>QuantityPerUnit</th>
+            <th>UnitPrice</th>
+            <th>UnitsInStock</th>
+            <th>UnitsOnOrder</th>
+            <th>ReorderLevel</th>
+            <th>Discontinued</th>
+            <th>Edit</th>
         </tr>
     </thead>
     <tbody>
         @{
             foreach(var p in Model)
             {
-               <tr>
-               <td>@p.Id</td>
-               <td>@p.Name</td>
-               <td>@p.Color</td>
-               <td>@p.Price</td>
-               <td>
-               <span>
-               <a asp-controller="Product" asp-action="Edit" asp-route-id="@p.Id" >Edit</a>
-               </span>
-               </td>
-               </tr> 
-
+               <partial name="_ProductRow" model="@p"></partial>
             }
         }
     </tbody>
 </table>
-

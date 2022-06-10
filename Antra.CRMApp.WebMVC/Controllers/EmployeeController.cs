@@ -75,7 +75,7 @@ namespace Antra.CRMApp.WebMVC.Controllers
         public async Task<IActionResult> Delete(int id)
         { 
             await employeeServiceAsync.DeleteEmployeeAsync(id);
-         return RedirectToAction("Index");
+            return RedirectToAction("Index");
         }
 
         [NonAction]
