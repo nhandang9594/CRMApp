@@ -2,6 +2,7 @@
 using Antra.CRMApp.WebMVC.Models;
 using Antra.CRMApp.Core.Contract.Service;
 using Antra.CRMApp.Core.Model;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Antra.CRMApp.WebMVC.Controllers
 {
@@ -32,25 +33,63 @@ namespace Antra.CRMApp.WebMVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var collection1 = await vendorServiceAsync.GetAllAsync();
+            ViewBag.Vendors = new SelectList(collection1, "Id", "Name");
+            var collection2 = await categoryServiceAsync.GetAllAsync();
+            ViewBag.Categories = new SelectList(collection2, "Id", "Name");
             return View();
         }
 
 
         [HttpPost]
-        public IActionResult Create(Product product)
+        public async Task<IActionResult> Create(ProductRequestModel model)
         {
             if (ModelState.IsValid)
             {
+                await productServiceAsync.AddProductAsync(model);
                 return RedirectToAction("Index");
             }
-            return View(product);
+            var collection1 = await vendorServiceAsync.GetAllAsync();
+            ViewBag.Vendors = new SelectList(collection1, "Id", "Name");
+            var collection2 = await categoryServiceAsync.GetAllAsync();
+            ViewBag.Categories = new SelectList(collection2, "Id", "Name");
+            return View(model);
         }
 
-        //public IActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            ViewBag.IsEdit = false;
+            var proModel = await productServiceAsync.GetProductForEditAsync(id);
+            var collection1 = await vendorServiceAsync.GetAllAsync();
+            ViewBag.Vendors = new SelectList(collection1, "Id", "Name");
+            var collection2 = await categoryServiceAsync.GetAllAsync();
+            ViewBag.Categories = new SelectList(collection2, "Id", "Name");
+            return View(proModel);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(ProductRequestModel model)
+        {
+            ViewBag.IsEdit = false;
+            var collection1 = await vendorServiceAsync.GetAllAsync();
+            ViewBag.Vendors = new SelectList(collection1, "Id", "Name");
+            var collection2 = await categoryServiceAsync.GetAllAsync();
+            ViewBag.Categories = new SelectList(collection2, "Id", "Name");
+            if (ModelState.IsValid)
+            {
+                await productServiceAsync.UpdateProductAsync(model);
+                ViewBag.IsEdit = true;
+            }
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await productServiceAsync.DeleteProductAsync(id);
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -13,10 +13,7 @@ namespace Antra.CRMApp.Core.Entity
         [Required]
         [Column(TypeName ="varchar(30)")]
         public string Name { get; set; }
-
-        [Required]
-        public int SupplierId { get; set; }
-        [Required]
+        public int VendorId { get; set; }
         public int CategoryId { get; set; }
 
         [Required]

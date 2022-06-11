@@ -1,0 +1,16 @@
+﻿@model CategoryModel
+<tr>
+    <td>@Model.Id</td>
+    <td>@Model.Name</td>
+    <td>@Model.Description</td>
+    <td>
+        <span>
+            <a asp-controller="Category" asp-action="Edit" asp-route-id="@Model.Id" >Edit</a>
+        </span>
+    </td>
+    <td>
+        <span>
+            <a asp-controller="Category" asp-action="Delete" asp-route-id="@Model.Id" class="text-danger">Delete</a>
+        </span>
+    </td>
+</tr> 

@@ -1,4 +1,5 @@
-﻿using Antra.CRMApp.Core.Model;
+﻿using Antra.CRMApp.Core.Entity;
+using Antra.CRMApp.Core.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

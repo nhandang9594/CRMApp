@@ -14,7 +14,7 @@ builder.Services.AddScoped<IEmployeeRepositoryAsync, EmployeeRepositoryAsync>();
 builder.Services.AddScoped<IRegionRepositoryAsync, RegionRepositoryAsync>();
 builder.Services.AddScoped<IProductRepositoryAsync, ProductRepositoryAsync>();
 builder.Services.AddScoped<IVendorRepositoryAsync, VendorRepositoryAsync>();
-
+builder.Services.AddScoped<ICategoryRepositoryAsync, CategoryRepositoryAsync>();
 
 
 
@@ -23,6 +23,7 @@ builder.Services.AddScoped<IEmployeeServiceAsync, EmployeeServiceAsync>();
 builder.Services.AddScoped<IRegionServiceAsync, RegionServiceAsync>();
 builder.Services.AddScoped<IProductServiceAsync, ProductServiceAsync>();
 builder.Services.AddScoped<IVendorServiceAsync, VendorServiceAsync>();
+builder.Services.AddScoped<ICategoryServiceAsync, CategoryServiceAsync>();
 
 var app = builder.Build();
 

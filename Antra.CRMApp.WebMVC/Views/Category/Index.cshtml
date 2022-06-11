@@ -1,0 +1,21 @@
+﻿@model IEnumerable<CategoryModel>
+<a asp-action="Create" asp-controller="Category" class="bg-success btn">Add Category</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach(var p in Model)
+            {
+               <partial name="_CategoryRow" model="@p"></partial>
+            }
+        }
+    </tbody>
+</table>

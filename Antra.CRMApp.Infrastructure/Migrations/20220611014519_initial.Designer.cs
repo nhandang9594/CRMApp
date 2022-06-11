@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Antra.CRMApp.Infrastructure.Migrations
 {
     [DbContext(typeof(CrmDbContext))]
-    [Migration("20220608193650_datatablecreation")]
-    partial class datatablecreation
+    [Migration("20220611014519_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -144,7 +144,7 @@ namespace Antra.CRMApp.Infrastructure.Migrations
 
                     b.Property<string>("PhotoPath")
                         .IsRequired()
-                        .HasColumnType("varchar");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<int>("PostalCode")
                         .HasColumnType("int");
@@ -201,15 +201,12 @@ namespace Antra.CRMApp.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(30)");
 
                     b.Property<int>("QuantityPerUnit")
                         .HasColumnType("int");
 
                     b.Property<int>("ReorderLevel")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SupplierId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("UnitPrice")
@@ -221,7 +218,14 @@ namespace Antra.CRMApp.Infrastructure.Migrations
                     b.Property<int>("UnitsOnOrder")
                         .HasColumnType("int");
 
+                    b.Property<int>("VendorId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("VendorId");
 
                     b.ToTable("Product");
                 });
@@ -323,6 +327,25 @@ namespace Antra.CRMApp.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Region");
+                });
+
+            modelBuilder.Entity("Antra.CRMApp.Core.Entity.Product", b =>
+                {
+                    b.HasOne("Antra.CRMApp.Core.Entity.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Antra.CRMApp.Core.Entity.Vendor", "Vendor")
+                        .WithMany()
+                        .HasForeignKey("VendorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Vendor");
                 });
 #pragma warning restore 612, 618
         }

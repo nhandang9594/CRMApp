@@ -68,7 +68,7 @@ namespace Antra.CRMApp.WebMVC.Controllers
                 
             }
             
-                return View(model);
+            return View(model);
         }
 
         [HttpGet]
