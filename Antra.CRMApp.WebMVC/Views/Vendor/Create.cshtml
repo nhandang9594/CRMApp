@@ -42,14 +42,14 @@
                 </div>
             </div>
             <div class="col">
-                <div class="mb-4">
+                 <div class="mb-4">
                     <label asp-for="IsActive"></label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Select an option</option>
-                        <option value="1">Yes</option>
-                        <option value="0">No</option>
+                    <select asp-for="IsActive" class="form-control">
+                        <option value="">Select an option</option> 
+                        <option value="True">Yes</option>
+                        <option value="False">No</option>
                     </select>
-                    <span asp-validation-for="IsActive" class="text-danger"></span>
+                    <span asp-validation-for="IsActive"></span>
                 </div>
             </div>
         </div>
