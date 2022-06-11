@@ -1,11 +1,11 @@
-﻿@model IEnumerable<CategoryModel>
-<a asp-action="Create" asp-controller="Category" class="btn btn-success">Add Category</a>
+﻿@model IEnumerable<ShipperModel>
+<a asp-action="Create" asp-controller="Shipper" class="btn btn-success">Add Shipper</a>
 <table class="table">
     <thead>
         <tr>
             <th>Id</th>
             <th>Name</th>
-            <th>Description</th>
+            <th>Phone</th>
             <th></th>
             <th></th>
         </tr>
@@ -14,7 +14,7 @@
         @{
             foreach(var p in Model)
             {
-               <partial name="_CategoryRow" model="@p"></partial>
+               <partial name="_ShipperRow" model="@p"></partial>
             }
         }
     </tbody>

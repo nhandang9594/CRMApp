@@ -1,9 +1,5 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-@model ProductRequestModel
+﻿@model ProductRequestModel
+
 @if (ViewBag.IsEdit==true)
 {
     <div class="container">
@@ -13,6 +9,7 @@
         </div>
     </div>
 }
+
 <form asp-controller="Product" asp-action="Edit" method="post">
     <h1 class="display-6">Edit Product</h1>
     <hr/>

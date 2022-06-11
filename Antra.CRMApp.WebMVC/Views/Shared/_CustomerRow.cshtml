@@ -1,0 +1,22 @@
+﻿@model CustomerModel
+<tr>
+    <td>@Model.Id</td>
+    <td>@Model.Name</td>
+    <td>@Model.Title</td>
+    <td>@Model.Address</td>
+    <td>@Model.City</td>
+    <td>@Model.RegionId</td>
+    <td>@Model.PostalCode</td>
+    <td>@Model.Country</td>
+    <td>@Model.Phone</td>
+    <td>
+        <span>
+            <a asp-controller="Customer" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+        </span>
+    </td>
+    <td>
+        <span>
+            <a asp-controller="Customer" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+        </span>
+    </td>
+</tr> 

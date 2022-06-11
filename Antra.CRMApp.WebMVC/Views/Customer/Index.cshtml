@@ -1,0 +1,32 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<CustomerModel>
+<a asp-action="Create" asp-controller="Customer" class="btn btn-success">Add Customer</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>Region</th>
+            <th>Postal Code</th>
+            <th>Country</th>
+            <th>Phone</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach(var p in Model)
+            {
+               <partial name="_CustomerRow" model="@p"></partial>
+            }
+        }
+    </tbody>
+</table>

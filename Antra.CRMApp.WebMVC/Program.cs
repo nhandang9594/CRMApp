@@ -15,8 +15,8 @@ builder.Services.AddScoped<IRegionRepositoryAsync, RegionRepositoryAsync>();
 builder.Services.AddScoped<IProductRepositoryAsync, ProductRepositoryAsync>();
 builder.Services.AddScoped<IVendorRepositoryAsync, VendorRepositoryAsync>();
 builder.Services.AddScoped<ICategoryRepositoryAsync, CategoryRepositoryAsync>();
-
-
+builder.Services.AddScoped<ICustomerRepositoryAsync, CustomerRepositoryAsync>();
+builder.Services.AddScoped<IShipperRepositoryAsync, ShipperRepositoryAsync>();
 
 //depedency injection for services
 builder.Services.AddScoped<IEmployeeServiceAsync, EmployeeServiceAsync>();
@@ -24,6 +24,8 @@ builder.Services.AddScoped<IRegionServiceAsync, RegionServiceAsync>();
 builder.Services.AddScoped<IProductServiceAsync, ProductServiceAsync>();
 builder.Services.AddScoped<IVendorServiceAsync, VendorServiceAsync>();
 builder.Services.AddScoped<ICategoryServiceAsync, CategoryServiceAsync>();
+builder.Services.AddScoped<ICustomerServiceAsync, CustomerServiceAsync>();
+builder.Services.AddScoped<IShipperServiceAsync, ShipperServiceAsync>();
 
 var app = builder.Build();
 

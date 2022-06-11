@@ -11,10 +11,10 @@
     <td>@Model.ReorderLevel</td>
     <td>
         @{
-            var discontinuedStatus = "No";
+            var discontinuedStatus = "Available";
             if(@Model.Discontinued)
             {
-                discontinuedStatus = "Yes";
+                discontinuedStatus = "Discontinued";
             }
         }
         @discontinuedStatus
