@@ -7,9 +7,9 @@ namespace Antra.CRMApp.WebMVC.Controllers
     public class RegionController : Controller
     {
         private readonly IRegionServiceAsync regionServiceAsync;
-        public RegionController(IRegionServiceAsync ser)
+        public RegionController(IRegionServiceAsync reg)
         {
-            regionServiceAsync = ser;
+            regionServiceAsync = reg;
         }
         public async Task<IActionResult> Index()
         {
@@ -32,6 +32,32 @@ namespace Antra.CRMApp.WebMVC.Controllers
             }
 
             return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            ViewBag.IsEdit = false;
+            var regModel = await regionServiceAsync.GetRegionForEditAsync(id);
+            return View(regModel);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(RegionModel model)
+        {
+            ViewBag.IsEdit = false;
+            if (ModelState.IsValid)
+            {
+                await regionServiceAsync.UpdateRegionAsync(model);
+                ViewBag.IsEdit = true;
+            }
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await regionServiceAsync.DeleteRegionAsync(id);
+            return RedirectToAction("Index");
         }
     }
 }

@@ -1,0 +1,27 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model RegionModel
+@if (ViewBag.IsEdit==true)
+{
+    <div class="container">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Region Updated Successfully. Go to <a asp-action="Index" asp-controller="Region" >Region Home Page</a> </strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+}
+<form asp-action="Edit" asp-controller="Region" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col mb-5">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control"/>
+                <span asp-validation-for="Name"></span>
+            </div>
+        </div>
+        <input type="submit" class="btn-primary btn" value="Edit Region"/>
+    </div>
+</form>

@@ -1,0 +1,20 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model RegionModel
+<tr>
+    <td>@Model.Id</td>
+    <td>@Model.Name</td>
+    <td>
+        <span>
+            <a asp-controller="Region" asp-action="Edit" asp-route-id="@Model.Id" >Edit</a>
+        </span>
+    </td>
+    <td>
+        <span>
+            <a asp-controller="Region" asp-action="Delete" asp-route-id="@Model.Id" class="text-danger">Delete</a>
+        </span>
+    </td>
+</tr>
