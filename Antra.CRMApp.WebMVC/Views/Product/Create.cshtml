@@ -73,11 +73,11 @@
             </div>
             <div class="col">
                  <div class="mb-4">
-                    <label asp-for="Discontinued"></label>
+                    <label asp-for="Discontinued">Status</label>
                     <select asp-for="Discontinued" class="form-control">
-                        <option value="">Select a region</option> 
-                        <option value="True">Yes</option>
-                        <option value="False">No</option>
+                        <option value="">Select an option</option> 
+                        <option value="True">Unavailable</option>
+                        <option value="False">Available</option>
                     </select>
                     <span asp-validation-for="Discontinued"></span>
                 </div>
