@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Antra.CRMApp.Core.Entity;
 
 namespace Antra.CRMApp.Core.Model
 {
@@ -32,7 +33,6 @@ namespace Antra.CRMApp.Core.Model
         [Required]
         public bool Discontinued { get; set; }
 
-       // public Vendor Vendor { get; set; }
-       // public Category Category { get; set; }
+        public VendorResponseModel Vendor { get; set; }
     }
 }

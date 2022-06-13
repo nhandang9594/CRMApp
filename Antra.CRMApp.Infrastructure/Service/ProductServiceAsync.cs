@@ -13,9 +13,11 @@ namespace Antra.CRMApp.Infrastructure.Service
     public class ProductServiceAsync : IProductServiceAsync
     {
         private readonly IProductRepositoryAsync productRepositoryAsync;
-        public ProductServiceAsync(IProductRepositoryAsync _productRepositoryAsync)
+        private readonly IVendorRepositoryAsync vendorRepositoryAsync;
+        public ProductServiceAsync(IProductRepositoryAsync _productRepositoryAsync, IVendorRepositoryAsync vendorRepositoryAsync)
         {
-           productRepositoryAsync = _productRepositoryAsync;
+            productRepositoryAsync = _productRepositoryAsync;
+            this.vendorRepositoryAsync = vendorRepositoryAsync;
         }
 
         public async Task<int> AddProductAsync(ProductRequestModel product)
@@ -58,6 +60,8 @@ namespace Antra.CRMApp.Infrastructure.Service
                     model.UnitsOnOrder = item.UnitsOnOrder;
                     model.ReorderLevel = item.ReorderLevel;
                     model.Discontinued = item.Discontinued;
+                    var v = await vendorRepositoryAsync.GetByIdAsync(item.VendorId);
+                    model.Vendor = new VendorResponseModel() { Name = v.Name, City = v.City };
                     result.Add(model);
                 }
                 return result;
