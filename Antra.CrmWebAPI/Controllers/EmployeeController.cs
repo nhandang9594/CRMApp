@@ -1,4 +1,5 @@
 ﻿using Antra.CRMApp.Core.Contract.Service;
+using Antra.CRMApp.Core.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,7 +22,47 @@ namespace Antra.CrmWebAPI.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        [Route("{id:int}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var result = await employeeServiceAsync.GetByIdAsync(id);
+            if (result == null)
+                return NotFound($"Employee with Id = {id} is not available");
+            return Ok(result);
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> Post(EmployeeRequestModel model)
+        {
+            var result = await employeeServiceAsync.AddEmployeeAsync(model);
+            if (result != 0)
+            {
+                return Ok(model);
+            }
+            return BadRequest();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Put(EmployeeRequestModel model)
+        {
+            var result = await employeeServiceAsync.AddEmployeeAsync(model);
+            if (result != 0)
+                return Ok(model);
+            return BadRequest();
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await employeeServiceAsync.DeleteEmployeeAsync(id);
+            if (result != 0)
+            {
+                return Ok("Employee Deleted Successfully");
+            }
+            return BadRequest();
+        }
         /*
          
         [HttpGet]
