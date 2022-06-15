@@ -3,10 +3,14 @@ using Antra.CRMApp.Core.Contract.Service;
 using Antra.CRMApp.Infrastructure.Data;
 using Antra.CRMApp.Infrastructure.Repository;
 using Antra.CRMApp.Infrastructure.Service;
+using Antra.CrmWebAPI.Middleware;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
+using Serilog;
+using Serilog.AspNetCore;
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Host.UseSerilog();
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -38,6 +42,21 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+//app.UseExceptionHandler(option => {
+//    option.Run(
+//        async context => {
+//            var ex = context.Features.Get<IExceptionHandlerFeature>();
+//            if (ex != null)
+//            {
+//                await context.Response.WriteAsync(ex.Error.Message);
+//            }
+//        });
+//});
+
+app.UseSerilogRequestLogging();
+
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
 app.UseHttpsRedirection();
 
