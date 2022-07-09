@@ -60,7 +60,11 @@ namespace Antra.CrmWebAPI.Controllers
         {
             var result = await regionServiceAsync.DeleteRegionAsync(id);
             if (result != 0)
-                return Ok("Region Deleted Successfully");
+            {
+                var response = new { Message = "Region Deleted Successfully" };
+                return Ok(response);
+            }
+
             return BadRequest();
         }
     }

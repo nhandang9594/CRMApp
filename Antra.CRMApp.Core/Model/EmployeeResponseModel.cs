@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Antra.CRMApp.Core.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ namespace Antra.CRMApp.Core.Model
         public string TitleOfCourtesy { get; set; }
         public DateTime BirthDate { get; set; }
         public string PhotoPath { get; set; }
+        public string RegionName { get; set; }
         public string Phone { get; set; }
     }
 }

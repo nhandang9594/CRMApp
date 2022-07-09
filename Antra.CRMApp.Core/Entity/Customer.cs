@@ -10,9 +10,11 @@ namespace Antra.CRMApp.Core.Entity
     public class Customer
     {
         public int Id { get; set; }
+
         [Required, Column(TypeName = "varchar")]
         [MaxLength(30)]
         public string Name { get; set; }
+
         [Required, Column(TypeName = "varchar")]
         [MaxLength(30)]
         public string Title { get; set; }
