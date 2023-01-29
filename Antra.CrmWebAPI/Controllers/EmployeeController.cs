@@ -1,5 +1,6 @@
 ﻿using Antra.CRMApp.Core.Contract.Service;
 using Antra.CRMApp.Core.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,8 @@ namespace Antra.CrmWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeServiceAsync employeeServiceAsync;
@@ -46,7 +49,7 @@ namespace Antra.CrmWebAPI.Controllers
         [HttpPut]
         public async Task<IActionResult> Put(EmployeeRequestModel model)
         {
-            var result = await employeeServiceAsync.AddEmployeeAsync(model);
+            var result = await employeeServiceAsync.UpdateEmployeeAsync(model);
             if (result != 0)
                 return Ok(model);
             return BadRequest();

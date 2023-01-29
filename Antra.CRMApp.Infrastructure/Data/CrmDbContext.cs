@@ -8,7 +8,8 @@ using Antra.CRMApp.Core.Entity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 namespace Antra.CRMApp.Infrastructure.Data
 {
-    public class CrmDbContext:IdentityDbContext<ApplicationUser>
+    //public class CrmDbContext:DbContext
+    public class CrmDbContext : IdentityDbContext<ApplicationUser>
     {
         public CrmDbContext(DbContextOptions<CrmDbContext> option):base(option)
         {

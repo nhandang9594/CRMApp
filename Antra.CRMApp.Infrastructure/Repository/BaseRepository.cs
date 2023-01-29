@@ -10,16 +10,16 @@ namespace Antra.CRMApp.Infrastructure.Repository
 {
     public class BaseRepository<T> : IRepositoryAsync<T> where T : class
     {
-       private readonly CrmDbContext db;
+        private readonly CrmDbContext db;
         public BaseRepository(CrmDbContext _dbContext)
         {
             db= _dbContext;
         }
         public async Task<int> DeleteAsync(int id)
         {
-          var result =  await db.Set<T>().FindAsync(id);// where(x=>x.Id==id).FirstOrDefault()
+            var result = await db.Set<T>().FindAsync(id);// where(x=>x.Id==id).FirstOrDefault()
             db.Set<T>().Remove(result);
-           return await db.SaveChangesAsync();  //commit
+            return await db.SaveChangesAsync();  //commit
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()

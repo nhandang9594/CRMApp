@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace Antra.CRMApp.Infrastructure.Service
 {
-    public class CategoryServiceAsync : ICategoryServiceAsync
+    public class CategoryServiceAsync : ICategoryServiceAsync 
     {
-        private ICategoryRepositoryAsync categoryRepositoryAsync;
+        private readonly ICategoryRepositoryAsync categoryRepositoryAsync;
         public CategoryServiceAsync(ICategoryRepositoryAsync _cat)
         {
             categoryRepositoryAsync = _cat;

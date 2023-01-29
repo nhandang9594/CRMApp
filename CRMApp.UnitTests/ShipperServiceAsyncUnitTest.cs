@@ -32,8 +32,6 @@ namespace CRMApp.UnitTests
 
             //Whoever someone call GetAllAsync(), return _shippers obj
             _mockShipperRepositoryAsync.Setup(m => m.GetAllAsync()).ReturnsAsync(_shippers);
-
-            
         }
 
         [ClassInitialize]
